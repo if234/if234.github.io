@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0921work</title>
+    <style>
+        *{
+            font-size: 44px;
+            text-align: center;
+            margin: 0%;
+        }
+        header{
+            height : 30% ;
+            background-color: aqua;
+            text-shadow:5px 5px 5px burlywood;
+        }
+        main{
+            height : 40% ;
+            background-color: rgb(187, 255, 0);
+        }
+        footer{
+            height : 30% ;
+            background-color: rgb(251, 0, 255);
+        }
+        </style>
+</head>
+<body>
+    <header>
+        fetch异步
+    </header>
+    <main>
+        <p id="word">loding</p>
+        <p id="pron">loding</p>
+        <p id="cn">loding</p>
+    </main>
+    <footer>
+        test
+    </footer>
+    <script>
+        document.body.style.height=innerHeight - 35 + 'px';
+    </script>
+</body>
+<script>
+    let strCET6 = '';
+    let arrCET6 = [];
+    fetch('cet6.txt')
+    .then(res => res.text())
+    .then(txt =>{
+                 strCET6 = txt ;
+                 arrCET6 = strCET6.split('\r\n') ;
+                 let rand = Math.floor(arrCET6.length * Math.random());
+                 let cetWord = arrCET6[rand];
+                 let begin = cetWord.indexOf('\t');
+                 let end = cetWord.lastIndexOf('\t');
+                 let word = cetWord.slice(0,begin);
+                 let porn = cetWord.slice(begin+1,end);
+                 let cn = cetWord.slice(end+1);
+                 select('#word').textContent = word;
+                 select('#pron').textContent = pron;
+                 select('#cn').textContent = cn;
+                });
+    function select(str){
+        let dom =document.querySelector(str);
+        return dom ;
+        }
+</script>
+
+</html>
